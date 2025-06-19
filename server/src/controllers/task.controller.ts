@@ -8,12 +8,12 @@ import { Request, Response } from "express";
 import Task from "../models/task.model.js";
 import { AuthRequest } from "../middleware/auth.middleware.js";
 
-export const getTasks = async (req: AuthRequest, res: Response) => {
+export const getTasks = async (req: AuthRequest, res: Response): Promise<void> => {
   const tasks = await Task.find({ userId: req.user?.userId });
   res.json(tasks);
 };
 
-export const getTask = async (req: AuthRequest, res: Response) => {
+export const getTask = async (req: AuthRequest, res: Response): Promise<Response | void> => {
   const task = await Task.findOne({
     _id: req.params.id,
     userId: req.user?.userId,
@@ -26,14 +26,14 @@ export const getTask = async (req: AuthRequest, res: Response) => {
   res.json(task);
 };
 
-export const createTask = async (req: AuthRequest, res: Response) => {
+export const createTask = async (req: AuthRequest, res: Response): Promise<void> => {
   const { title, description } = req.body;
   const task = new Task({ title, description, userId: req.user?.userId });
   await task.save();
   res.status(201).json(task);
 };
 
-export const updateTask = async (req: AuthRequest, res: Response) => {
+export const updateTask = async (req: AuthRequest, res: Response): Promise<Response | void> => {
   const { title, description } = req.body;
   const task = await Task.findOneAndUpdate(
     { _id: req.params.id, userId: req.user?.userId },
@@ -47,7 +47,7 @@ export const updateTask = async (req: AuthRequest, res: Response) => {
   res.json(task);
 };
 
-export const deleteTask = async (req: AuthRequest, res: Response) => {
+export const deleteTask = async (req: AuthRequest, res: Response): Promise<Response | void> => {
   const task = await Task.findOneAndDelete({
     _id: req.params.id,
     userId: req.user?.userId,
