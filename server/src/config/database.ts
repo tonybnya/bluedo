@@ -14,7 +14,7 @@ async function connectToDatabase() {
     console.error("Error connecting to database", error);
     process.exit(1);
   }
-};
+}
 
 export { connectToDatabase };
 export default connectToDatabase;
