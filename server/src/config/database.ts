@@ -8,13 +8,21 @@ import mongoose from "mongoose";
 
 async function connectToDatabase() {
   try {
-    await mongoose.connect(process.env.MONGO_URI as string);
-    console.log("Connected to database...");
+    const mongoUri = process.env.MONGO_URI;
+    
+    if (!mongoUri) {
+      throw new Error('MONGO_URI environment variable is not defined');
+    }
+    
+    console.log('Attempting to connect to MongoDB...');
+    await mongoose.connect(mongoUri);
+    console.log("Connected to database successfully");
   } catch (error) {
-    console.error("Error connecting to database", error);
-    process.exit(1);
+    console.error("Error connecting to database:", error);
+    // Don't exit the process here, let the caller handle the error
+    throw error;
   }
-}
+};
 
 export { connectToDatabase };
 export default connectToDatabase;
