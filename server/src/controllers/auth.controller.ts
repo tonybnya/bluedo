@@ -8,9 +8,16 @@ import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import User from "../models/user.model.js";
 
-const JWT_SECRET = process.env.JWT_SECRET as string;
+// Get JWT_SECRET from environment variables when needed
+const getJwtSecret = () => {
+  const secret = process.env.JWT_SECRET;
+  if (!secret) {
+    throw new Error('JWT_SECRET is not defined in environment variables');
+  }
+  return secret;
+};
 
-export const register = async (req: Request, res: Response) => {
+export const register = async (req: Request, res: Response): Promise<Response | void> => {
   const { username, password } = req.body;
   const existing = await User.findOne({ username });
 
@@ -20,9 +27,10 @@ export const register = async (req: Request, res: Response) => {
 
   const user = new User({ username, password });
   await user.save();
+  res.status(201).json({ message: "User registered successfully" });
 };
 
-export const login = async (req: Request, res: Response) => {
+export const login = async (req: Request, res: Response): Promise<Response | void> => {
   const { username, password } = req.body;
   const user = await User.findOne({ username });
 
@@ -30,6 +38,6 @@ export const login = async (req: Request, res: Response) => {
     return res.status(401).json({ message: "Invalid credentials" });
   }
 
-  const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: "1d" });
+  const token = jwt.sign({ userId: user._id }, getJwtSecret(), { expiresIn: "1d" });
   res.json({ token });
 };
