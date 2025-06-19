@@ -4,7 +4,7 @@
  * Author      : @tonybnya
  */
 
-import express from "express";
+import express, { Router, Request, Response, NextFunction } from "express";
 import {
   createTask,
   deleteTask,
@@ -14,13 +14,17 @@ import {
 } from "../controllers/task.controller.js";
 import { authenticate } from "../middleware/auth.middleware.js";
 
-const router = express.Router();
-router.use(authenticate);
+// Create router
+const router = Router();
 
-router.get("/", getTasks);
-router.get("/:id", getTask);
-router.post("/", createTask);
-router.put("/:id", updateTask);
-router.delete("/:id", deleteTask);
+// Apply authentication middleware to all routes
+router.use(authenticate as express.RequestHandler);
+
+// Cast each controller function to RequestHandler to satisfy TypeScript
+router.get("/", getTasks as express.RequestHandler);
+router.get("/:id", getTask as express.RequestHandler);
+router.post("/", createTask as express.RequestHandler);
+router.put("/:id", updateTask as express.RequestHandler);
+router.delete("/:id", deleteTask as express.RequestHandler);
 
 export default router;

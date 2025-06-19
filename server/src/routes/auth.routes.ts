@@ -4,12 +4,13 @@
  * Author      : @tonybnya
  */
 
-import express from "express";
+import express, { Request, Response, Router } from "express";
 import { login, register } from "../controllers/auth.controller.js";
 
-const router = express.Router();
+const router = Router();
 
-router.post("/register", register);
-router.post("/login", login);
+// Cast controller functions to RequestHandler to satisfy TypeScript
+router.post("/register", register as express.RequestHandler);
+router.post("/login", login as express.RequestHandler);
 
 export default router;
