@@ -27,8 +27,21 @@ connectToDatabase()
     // Not throwing here as this is in a promise chain
   });
 
+// Apply middlewares
 app.use(cors());
+
+// Body parsing middleware - make sure this comes before routes
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Debug middleware to log incoming requests
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.url}`, {
+    contentType: req.headers['content-type'],
+    hasBody: !!req.body
+  });
+  next();
+});
 
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
