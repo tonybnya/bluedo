@@ -6,10 +6,14 @@
 
 import express from "express";
 import cors from "cors";
-import connectToDatabase from "./config/database";
+import dotenv from "dotenv";
+import { connectToDatabase } from "./config/database.js";
+
+// Load environment variables
+dotenv.config();
 
 const app = express();
-connectToDatabase;
+connectToDatabase();
 
 app.use(cors());
 app.use(express.json());
