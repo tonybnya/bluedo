@@ -4,17 +4,13 @@
  * Author      : @tonybnya
  */
 
-// Import dotenv first to ensure environment variables are loaded before anything else
 import dotenv from "dotenv";
 dotenv.config();
 
-// Define a self-executing async function to allow top-level await
+// define a self-executing async function to allow top-level await
 (async () => {
   try {
-    console.log('Starting server initialization...');
-    
-    // Explicitly log importing app
-    console.log('Importing app module...');
+    // explicitly log importing app
     const appModule = await import('./app.js');
     const app = appModule.default;
     
@@ -25,7 +21,6 @@ dotenv.config();
       console.log(`Server running on port ${PORT}...`);
     });
   } catch (error) {
-    console.error('Fatal error during server initialization:');
     console.error(error);
     process.exit(1);
   }

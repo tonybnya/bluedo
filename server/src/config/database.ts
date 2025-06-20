@@ -19,7 +19,7 @@ async function connectToDatabase() {
     console.log("Connected to database successfully");
   } catch (error) {
     console.error("Error connecting to database:", error);
-    // Don't exit the process here, let the caller handle the error
+    // handle the error
     throw error;
   }
 };

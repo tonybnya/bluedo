@@ -8,7 +8,7 @@ import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import User from "../models/user.model.js";
 
-// Get JWT_SECRET from environment variables when needed
+// get JWT_SECRET from .env file
 const getJwtSecret = () => {
   const secret = process.env.JWT_SECRET;
   if (!secret) {
@@ -18,20 +18,14 @@ const getJwtSecret = () => {
 };
 
 export const register = async (req: Request, res: Response): Promise<Response | void> => {
-  console.log('Register request received:', { 
-    headers: req.headers,
-    body: req.body,
-    contentType: req.headers['content-type']
-  });
-  
-  // Check if request body exists
+  // check if request body exists
   if (!req.body) {
     return res.status(400).json({ message: "Request body is missing" });
   }
   
   const { username, password } = req.body || {};
   
-  // Validate required fields
+  // validate required fields
   if (!username || !password) {
     return res.status(400).json({ message: "Username and password are required" });
   }
@@ -53,20 +47,14 @@ export const register = async (req: Request, res: Response): Promise<Response | 
 };
 
 export const login = async (req: Request, res: Response): Promise<Response | void> => {
-  console.log('Login request received:', { 
-    headers: req.headers,
-    body: req.body,
-    contentType: req.headers['content-type']
-  });
-  
-  // Check if request body exists
+  // check if request body exists
   if (!req.body) {
     return res.status(400).json({ message: "Request body is missing" });
   }
   
   const { username, password } = req.body || {};
   
-  // Validate required fields
+  // validate required fields
   if (!username || !password) {
     return res.status(400).json({ message: "Username and password are required" });
   }

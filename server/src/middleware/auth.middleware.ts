@@ -7,7 +7,7 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 
-// Get JWT_SECRET from environment variables when needed
+// Get JWT_SECRET from .env file
 const getJwtSecret = () => {
   const secret = process.env.JWT_SECRET;
   if (!secret) {

@@ -11,31 +11,28 @@ import { connectToDatabase } from "./config/database.js";
 import authRoutes from "./routes/auth.routes.js";
 import taskRoutes from "./routes/task.routes.js";
 
-// Load environment variables
-console.log('Loading environment variables in app.ts...');
+// load environment variables
 dotenv.config();
 
-console.log('Creating Express app...');
+// create express app
 const app = express();
 
-console.log('Connecting to database...');
-// Initialize database connection (will be awaited when the promise resolves)
+// connect to database
 connectToDatabase()
   .then(() => console.log('Database connection successful'))
   .catch(error => {
     console.error('Database connection failed:', error);
-    // Not throwing here as this is in a promise chain
   });
 
-// Apply middlewares
+// apply middlewares
 app.use(cors());
 
-// Body parsing middleware - make sure this comes before routes
+// body parsing middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Debug middleware to log incoming requests
-app.use((req, res, next) => {
+// debug middleware to log incoming requests
+app.use((req, _res, next) => {
   console.log(`${req.method} ${req.url}`, {
     contentType: req.headers['content-type'],
     hasBody: !!req.body

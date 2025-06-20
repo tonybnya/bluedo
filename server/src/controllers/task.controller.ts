@@ -4,7 +4,7 @@
  * Author      : @tonybnya
  */
 
-import { Request, Response } from "express";
+import { Response } from "express";
 import Task from "../models/task.model.js";
 import { AuthRequest } from "../middleware/auth.middleware.js";
 import mongoose from "mongoose";
@@ -20,7 +20,7 @@ export const getTasks = async (req: AuthRequest, res: Response): Promise<Respons
 };
 
 export const getTask = async (req: AuthRequest, res: Response): Promise<Response | void> => {
-  // Validate ObjectId format
+  // validate ObjectId format
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
     return res.status(400).json({ message: "Invalid task ID format" });
   }
@@ -46,7 +46,7 @@ export const createTask = async (req: AuthRequest, res: Response): Promise<Respo
   try {
     const { title, description } = req.body;
     
-    // Validate required fields
+    // validate required fields
     if (!title) {
       return res.status(400).json({ message: "Task title is required" });
     }
@@ -61,7 +61,7 @@ export const createTask = async (req: AuthRequest, res: Response): Promise<Respo
 };
 
 export const updateTask = async (req: AuthRequest, res: Response): Promise<Response | void> => {
-  // Validate ObjectId format
+  // validate ObjectId format
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
     return res.status(400).json({ message: "Invalid task ID format" });
   }
@@ -86,7 +86,7 @@ export const updateTask = async (req: AuthRequest, res: Response): Promise<Respo
 };
 
 export const deleteTask = async (req: AuthRequest, res: Response): Promise<Response | void> => {
-  // Validate ObjectId format
+  // validate ObjectId format
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
     return res.status(400).json({ message: "Invalid task ID format" });
   }
