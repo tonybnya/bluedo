@@ -37,7 +37,6 @@ npm start
 ### Tasks
 
 All task endpoints require authentication via Bearer token in the Authorization header.
-Also add `Content-Type: application/json` to the headers of each request.
 
 | Method | Endpoint | Description | Request Body | Response |
 |--------|----------|-------------|--------------|----------|
