@@ -1,10 +1,11 @@
 import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { RouterModule } from "@angular/router";
 
 @Component({
   selector: "app-home",
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   template: `
     <section class="min-h-screen flex items-center justify-center bg-[#1a1826]">
       <div class="mx-auto max-w-[43rem]">
@@ -31,9 +32,14 @@ import { CommonModule } from "@angular/common";
 
         <div class="mt-6 flex items-center justify-center gap-4">
           <a
-            href="#"
+            routerLink="/register"
             class="transform rounded-md bg-[#317591] px-5 py-3 font-medium text-white transition-colors hover:bg-[#317591]/50"
             >Get started</a
+          >
+          <a
+            routerLink="/login"
+            class="transform rounded-md bg-transparent border border-[#317591] px-5 py-3 font-medium text-white transition-colors hover:bg-[#317591]/10"
+            >Login</a
           >
         </div>
       </div>
