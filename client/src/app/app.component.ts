@@ -5,10 +5,8 @@ import { RouterModule } from "@angular/router";
   standalone: true,
   selector: "app-root",
   template: `
-    <main>
-      <section class="content">
-        <router-outlet></router-outlet>
-      </section>
+    <main class="min-h-screen">
+      <router-outlet></router-outlet>
     </main>
   `,
   styleUrls: ["./app.component.css"],
