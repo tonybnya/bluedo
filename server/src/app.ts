@@ -19,18 +19,20 @@ const app = express();
 
 // connect to database
 connectToDatabase()
-  .then(() => console.log('Database connection successful'))
-  .catch(error => {
-    console.error('Database connection failed:', error);
+  .then(() => console.log("Database connection successful"))
+  .catch((error) => {
+    console.error("Database connection failed:", error);
   });
 
 // apply middlewares
-app.use(cors({
-  origin: ['http://localhost:4200', 'http://127.0.0.1:4200'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: ["http://localhost:4200", "http://127.0.0.1:4200"],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  }),
+);
 
 // body parsing middleware
 app.use(express.json());
@@ -39,8 +41,8 @@ app.use(express.urlencoded({ extended: true }));
 // debug middleware to log incoming requests
 app.use((req, _res, next) => {
   console.log(`${req.method} ${req.url}`, {
-    contentType: req.headers['content-type'],
-    hasBody: !!req.body
+    contentType: req.headers["content-type"],
+    hasBody: !!req.body,
   });
   next();
 });
