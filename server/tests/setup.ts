@@ -1,3 +1,5 @@
+/// <reference types="jest" />
+
 /**
  * Script Name : setup.ts
  * Description : This is the setup file for the tests
