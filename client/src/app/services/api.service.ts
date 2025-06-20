@@ -1,7 +1,9 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { environment } from "../../environments/environment";
+import { environment } from "src/environments/environment";
+import { User, LoginCredentials, AuthResponse } from "../models/user.model";
+import { Task, NewTask, TaskUpdate } from "../models/task.model";
 
 @Injectable({
   providedIn: "root",
@@ -22,41 +24,47 @@ export class ApiService {
   }
 
   // Auth endpoints
-  register(userData: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/auth/register`, userData);
+  register(userData: User): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(
+      `${this.apiUrl}/auth/register`,
+      userData
+    );
   }
 
-  login(credentials: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/auth/login`, credentials);
+  login(credentials: LoginCredentials): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(
+      `${this.apiUrl}/auth/login`,
+      credentials
+    );
   }
 
   // Tasks endpoints
-  getTasks(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/tasks`, {
+  getTasks(): Observable<Task[]> {
+    return this.http.get<Task[]>(`${this.apiUrl}/tasks`, {
       headers: this.getAuthHeaders(),
     });
   }
 
-  getTask(id: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/tasks/${id}`, {
+  getTask(id: string): Observable<Task> {
+    return this.http.get<Task>(`${this.apiUrl}/tasks/${id}`, {
       headers: this.getAuthHeaders(),
     });
   }
 
-  createTask(taskData: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/tasks`, taskData, {
+  createTask(taskData: NewTask): Observable<Task> {
+    return this.http.post<Task>(`${this.apiUrl}/tasks`, taskData, {
       headers: this.getAuthHeaders(),
     });
   }
 
-  updateTask(id: string, taskData: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/tasks/${id}`, taskData, {
+  updateTask(id: string, taskData: TaskUpdate): Observable<Task> {
+    return this.http.put<Task>(`${this.apiUrl}/tasks/${id}`, taskData, {
       headers: this.getAuthHeaders(),
     });
   }
 
-  deleteTask(id: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/tasks/${id}`, {
+  deleteTask(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/tasks/${id}`, {
       headers: this.getAuthHeaders(),
     });
   }
