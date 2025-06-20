@@ -16,7 +16,7 @@ import { CommonModule } from "@angular/common";
       </div>
 
       <div
-        class="w-1/2 flex flex-col justify-between max-lg:justify-center items-center p-8 bg-black min-h-screen"
+        class="w-1/2 flex flex-col justify-between max-lg:justify-center items-center p-8 bg-[#1a1826] min-h-screen"
       >
         <div class="flex flex-col items-center gap-3 mb-12">
           <img
@@ -48,7 +48,7 @@ import { CommonModule } from "@angular/common";
 
           <button
             size="lg"
-            class="px-6 py-2 rounded-md bg-[#317591] text-white hover:bg-[#317591]/50 hover:scale-105"
+            class="px-6 py-2 rounded-md bg-[#317591] text-white hover:bg-[#317591]/50"
           >
             <a
               href="/"
@@ -61,7 +61,7 @@ import { CommonModule } from "@angular/common";
           </button>
         </div>
 
-        <div class="mt-12 text-[#2b2938] text-sm font-bold">
+        <div class="mt-12 text-[#f7c279] text-sm font-bold">
           <span>Error Code 404</span>
         </div>
       </div>
