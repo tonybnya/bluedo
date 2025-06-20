@@ -6,9 +6,7 @@ import { CommonModule } from "@angular/common";
   standalone: true,
   imports: [CommonModule],
   template: `
-    <section
-      class="py-24 flex items-center min-h-screen justify-center bg-black"
-    >
+    <section class="min-h-screen flex items-center justify-center bg-[#1a1826]">
       <div class="mx-auto max-w-[43rem]">
         <div class="text-center flex flex-col items-center justify-center">
           <img
@@ -16,7 +14,7 @@ import { CommonModule } from "@angular/common";
             src="/assets/logo.png"
             alt="logo"
           />
-          <p class="text-lg font-medium leading-8 text-[#317591]">
+          <p class="text-lg font-medium leading-8 text-[#f7c279]">
             Introducing BlueDo
           </p>
           <h1
@@ -27,7 +25,7 @@ import { CommonModule } from "@angular/common";
           <p class="mt-3 text-lg leading-relaxed text-[#dfddf3]">
             <span class="text-[#317591] font-bold">BlueDo</span> helps you stay
             focused and in control by managing your to-do list with ease —
-            create, edit, and track your tasks effortlessly.
+            create, edit, delete, and track your tasks effortlessly.
           </p>
         </div>
 
