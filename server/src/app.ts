@@ -27,7 +27,11 @@ connectToDatabase()
 // apply middlewares
 app.use(
   cors({
-    origin: ["http://localhost:4200", "http://127.0.0.1:4200"],
+    origin: [
+      "https://tonybnya-bluedo.vercel.app",
+      "http://localhost:4200",
+      "http://127.0.0.1:4200",
+    ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
