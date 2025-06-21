@@ -9,7 +9,10 @@ import { Task, CreateTaskDto, UpdateTaskDto } from "../models/task.model";
   providedIn: "root",
 })
 export class ApiService {
-  private apiUrl = environment.apiUrl;
+  // Force production URL if deploying to Vercel
+  private apiUrl = window.location.hostname.includes('vercel') 
+    ? 'https://tonybnya-bluedo-api.onrender.com/api'
+    : environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
@@ -25,10 +28,10 @@ export class ApiService {
 
   // Auth endpoints
   register(userData: User): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(
-      `${this.apiUrl}/auth/register`,
-      userData
-    );
+    const url = `${this.apiUrl}/auth/register`;
+    console.log('Register URL:', url);
+    console.log('Using API URL:', this.apiUrl);
+    return this.http.post<AuthResponse>(url, userData);
   }
 
   login(credentials: LoginCredentials): Observable<AuthResponse> {
