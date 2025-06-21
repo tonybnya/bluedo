@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { User, LoginCredentials, AuthResponse } from "../models/user.model";
-import { Task, NewTask, TaskUpdate } from "../models/task.model";
+import { Task, CreateTaskDto, UpdateTaskDto } from "../models/task.model";
 
 @Injectable({
   providedIn: "root",
@@ -25,17 +25,11 @@ export class ApiService {
 
   // Auth endpoints
   register(userData: User): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(
-      `${this.apiUrl}/auth/register`,
-      userData
-    );
+    return this.http.post<AuthResponse>(`${this.apiUrl}/auth/register`, userData);
   }
 
   login(credentials: LoginCredentials): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(
-      `${this.apiUrl}/auth/login`,
-      credentials
-    );
+    return this.http.post<AuthResponse>(`${this.apiUrl}/auth/login`, credentials);
   }
 
   // Tasks endpoints
@@ -51,13 +45,13 @@ export class ApiService {
     });
   }
 
-  createTask(taskData: NewTask): Observable<Task> {
+  createTask(taskData: CreateTaskDto): Observable<Task> {
     return this.http.post<Task>(`${this.apiUrl}/tasks`, taskData, {
       headers: this.getAuthHeaders(),
     });
   }
 
-  updateTask(id: string, taskData: TaskUpdate): Observable<Task> {
+  updateTask(id: string, taskData: UpdateTaskDto): Observable<Task> {
     return this.http.put<Task>(`${this.apiUrl}/tasks/${id}`, taskData, {
       headers: this.getAuthHeaders(),
     });
