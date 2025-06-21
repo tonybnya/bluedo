@@ -12,7 +12,7 @@ import { Task, CreateTaskDto, UpdateTaskDto } from "../models/task.model";
     <div class="min-h-screen bg-[#1a1826] text-white p-6">
       <div class="max-w-4xl mx-auto">
         <h1 class="text-2xl font-bold mb-6 flex items-center">
-          <span class="text-[#317591]">My Tasks</span>
+          <span class="text-[#f7c219]">My Tasks</span>
         </h1>
 
         <!-- Error message -->
@@ -29,7 +29,7 @@ import { Task, CreateTaskDto, UpdateTaskDto } from "../models/task.model";
           class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
         >
           <div class="bg-[#2b2938] p-5 rounded-lg w-full max-w-md relative">
-            <h2 class="text-xl font-semibold mb-4">Edit Task</h2>
+            <h2 class="text-xl font-semibold mb-4 text-[#f7c279]">Edit Task</h2>
             <form (ngSubmit)="updateTask()" #editForm="ngForm">
               <div class="mb-4">
                 <label for="editTitle" class="block text-[#dfddf3] mb-2"
@@ -69,7 +69,7 @@ import { Task, CreateTaskDto, UpdateTaskDto } from "../models/task.model";
                 <button
                   type="submit"
                   [disabled]="!editForm.form.valid || isLoading"
-                  class="px-4 py-2 bg-[#317591] text-white rounded hover:bg-[#317591]/80 focus:outline-none disabled:opacity-50"
+                  class="px-4 py-2 bg-[#317591] text-white rounded hover:bg-[#317591]/50 focus:outline-none disabled:opacity-50"
                 >
                   Save
                 </button>
@@ -112,7 +112,7 @@ import { Task, CreateTaskDto, UpdateTaskDto } from "../models/task.model";
             <button
               type="submit"
               [disabled]="!taskForm.form.valid || isCreating"
-              class="px-4 py-2 bg-[#317591] text-white rounded hover:bg-[#317591]/80 focus:outline-none disabled:opacity-50"
+              class="px-4 py-2 bg-[#317591] text-white rounded hover:bg-[#317591]/50 focus:outline-none disabled:opacity-50"
             >
               {{ isCreating ? "Creating..." : "Add Task" }}
             </button>

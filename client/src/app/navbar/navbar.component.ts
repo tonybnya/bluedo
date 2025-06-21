@@ -27,30 +27,32 @@ import { AuthService } from "../services/auth.service";
           id="nav-content"
         >
           <div class="auth flex items-center w-full md:w-full">
-            <ng-container *ngIf="!(isAuthenticated$ | async); else loggedIn">
-              <a
-                routerLink="/login"
-                class="bg-transparent text-white p-2 rounded border border-[#317591] mr-4 hover:border-[#317591]/50"
-              >
-                Login
-              </a>
-              <a
-                routerLink="/register"
-                class="bg-[#317591] text-white p-2 rounded hover:bg-[#317591]/50 hover:text-gray-100"
-              >
-                Register
-              </a>
-            </ng-container>
+            <div class="flex items-center justify-center gap-4">
+              <ng-container *ngIf="!(isAuthenticated$ | async); else loggedIn">
+                <a
+                  routerLink="/login"
+                  class="transform rounded-md bg-transparent border border-[#317591] px-5 py-3 font-medium text-white transition-colors hover:bg-[#317591]/10"
+                >
+                  Login
+                </a>
+                <a
+                  routerLink="/register"
+                  class="transform rounded-md bg-[#317591] px-5 py-3 font-medium text-white transition-colors hover:bg-[#317591]/50"
+                >
+                  Register
+                </a>
+              </ng-container>
+            </div>
             <ng-template #loggedIn>
               <a
                 routerLink="/tasks"
-                class="bg-transparent text-white p-2 rounded border border-[#317591] mr-4 hover:border-[#317591]/50"
+                class="transform rounded-md bg-transparent border border-[#317591] px-5 py-3 font-medium text-white transition-colors hover:bg-[#317591]/10"
               >
                 Tasks
               </a>
               <button
                 (click)="logout()"
-                class="bg-[#317591] text-white p-2 rounded hover:bg-[#317591]/50 hover:text-gray-100"
+                class="transform rounded-md bg-[#317591] px-5 py-3 font-medium text-white transition-colors hover:bg-[#317591]/50"
               >
                 Logout
               </button>

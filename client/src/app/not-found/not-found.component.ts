@@ -48,7 +48,7 @@ import { CommonModule } from "@angular/common";
 
           <button
             size="lg"
-            class="px-6 py-2 rounded-md bg-[#317591] text-white hover:bg-[#317591]/50"
+            class="transform rounded-md bg-[#317591] px-5 py-3 font-medium text-white transition-colors hover:bg-[#317591]/50"
           >
             <a
               href="/"
