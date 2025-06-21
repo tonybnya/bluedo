@@ -14,7 +14,7 @@ dotenv.config();
     const appModule = await import('./app.js');
     const app = appModule.default;
     
-    const PORT = process.env.PORT || 5200;
+    const PORT = process.env.PORT || 3000;
     console.log(`Port configured: ${PORT}`);
     
     app.listen(PORT, () => {
