@@ -1,6 +1,9 @@
 {
   "include": [
-    "src/**/*",
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
     "tests"
   ],
   "compilerOptions": {
@@ -9,6 +12,7 @@
     "moduleResolution": "NodeNext",
     "allowSyntheticDefaultImports": true,
     "outDir": "./dist",
+    "rootDir": "./src",
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
