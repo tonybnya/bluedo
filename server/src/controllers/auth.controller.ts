@@ -39,7 +39,18 @@ export const register = async (req: Request, res: Response): Promise<Response | 
 
   const user = new User({ username, password });
   await user.save();
-  res.status(201).json({ message: "User registered successfully" });
+  
+  // Generate token for immediate login after registration
+  const token = jwt.sign({ userId: user._id }, getJwtSecret(), { expiresIn: "1d" });
+  
+  res.status(201).json({ 
+    token, 
+    user: { 
+      _id: user._id, 
+      username: user.username 
+    },
+    message: "User registered successfully" 
+  });
   } catch (error) {
     console.error('Error in register:', error);
     return res.status(500).json({ message: "Server error during registration" });
@@ -67,7 +78,13 @@ export const login = async (req: Request, res: Response): Promise<Response | voi
   }
 
   const token = jwt.sign({ userId: user._id }, getJwtSecret(), { expiresIn: "1d" });
-  res.json({ token });
+  res.json({ 
+    token, 
+    user: { 
+      _id: user._id, 
+      username: user.username 
+    } 
+  });
   } catch (error) {
     console.error('Error in login:', error);
     return res.status(500).json({ message: "Server error during login" });
