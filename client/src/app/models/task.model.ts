@@ -13,12 +13,12 @@ export interface Task {
   updatedAt?: Date;
 }
 
-export interface NewTask {
+export interface CreateTaskDto {
   title: string;
   description?: string;
 }
 
-export interface TaskUpdate {
+export interface UpdateTaskDto {
   title?: string;
   description?: string;
 }
