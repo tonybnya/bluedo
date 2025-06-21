@@ -1,0 +1,6 @@
+README.md
+.git
+node_modules
+.angular
+e2e
+.gitignore
