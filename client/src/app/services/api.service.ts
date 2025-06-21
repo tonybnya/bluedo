@@ -9,10 +9,10 @@ import { Task, CreateTaskDto, UpdateTaskDto } from "../models/task.model";
   providedIn: "root",
 })
 export class ApiService {
-  // Force production URL if deploying to Vercel
-  private apiUrl = window.location.hostname.includes('vercel') 
-    ? 'https://tonybnya-bluedo-api.onrender.com/api'
-    : environment.apiUrl;
+  // Determine API URL based on whether we're running locally or not
+  private apiUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://localhost:3000/api'
+    : 'https://tonybnya-bluedo-api.onrender.com/api';
 
   constructor(private http: HttpClient) {}
 
