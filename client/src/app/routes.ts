@@ -2,6 +2,10 @@ import { Routes } from "@angular/router";
 import { HomeComponent } from "./home/home.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
 import { MainLayoutComponent } from "./layouts/main-layout.component";
+import { LoginComponent } from "./auth/login/login.component";
+import { RegisterComponent } from "./auth/register/register.component";
+import { TasksComponent } from "./tasks/tasks.component";
+import { AuthGuard } from "./auth/auth.guard";
 
 const routeConfig: Routes = [
   {
@@ -13,11 +17,22 @@ const routeConfig: Routes = [
         component: HomeComponent,
         title: "BlueDo - Home Page",
       },
-      // {
-      //   path: "details/:id",
-      //   component: DetailsComponent,
-      //   title: "Details Page",
-      // },
+      {
+        path: "login",
+        component: LoginComponent,
+        title: "BlueDo - Login",
+      },
+      {
+        path: "register",
+        component: RegisterComponent,
+        title: "BlueDo - Register",
+      },
+      {
+        path: "tasks",
+        component: TasksComponent,
+        canActivate: [AuthGuard],
+        title: "BlueDo - My Tasks",
+      },
     ],
   },
   {
