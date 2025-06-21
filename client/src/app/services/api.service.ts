@@ -9,7 +9,7 @@ import { Task, CreateTaskDto, UpdateTaskDto } from "../models/task.model";
   providedIn: "root",
 })
 export class ApiService {
-  private apiUrl = environment.apiUrl || "http://localhost:3000/api";
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
@@ -25,11 +25,17 @@ export class ApiService {
 
   // Auth endpoints
   register(userData: User): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.apiUrl}/auth/register`, userData);
+    return this.http.post<AuthResponse>(
+      `${this.apiUrl}/auth/register`,
+      userData
+    );
   }
 
   login(credentials: LoginCredentials): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.apiUrl}/auth/login`, credentials);
+    return this.http.post<AuthResponse>(
+      `${this.apiUrl}/auth/login`,
+      credentials
+    );
   }
 
   // Tasks endpoints
